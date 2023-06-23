@@ -1,0 +1,80 @@
+Output: jsonl/8211_tangenciesX
+Summary_Output: summary/8211_tangenciesX
+Summary_Style: LaTeX_Table
+
+Single_Chain: Y
+Double_Chain: Y
+Single_QHD: Y
+Double_QHD: Y
+Keep_First: global
+Search_For: 5 6 7 8 9
+
+Nef_Check: print
+Effective_Check: print
+Obstruction_Check: print
+
+Summary_Include_GCD: Y
+LaTeX_Include_Subsection: Y
+
+Tests: 6
+
+// SubTests: 20000000 - 20000001
+
+Fibers:
+    I8 Try Try Fix Try Fix Fix
+        L_2 E_7 E_8 L_3 E_4 L_1 E_2 E_1
+    I2 Try Fix Dis Fix Dis Fix
+        C L
+    I1 Fix Fix Fix Ign Ign Ign
+        F_1
+    I1 Fix Ign Ign Fix Fix Ign
+        F_2
+Merge:
+    G_1 Try
+        F_1 F_1
+    G_2 Try
+        F_2 F_2
+    P_1 Try
+        C L
+    P_2 Try
+        C L
+    D_1 Try
+        G_1
+    D_2 Try
+        G_2
+/*
+    H_1 Ign
+        G_1
+    H_2 Ign
+        G_2
+*/
+Sections:
+    E_3 Try
+        E_2 F_1 C F_2
+    E_5 Try
+        E_4 F_1 L F_2
+    E_6 Try
+        L_2 F_1 L F_2
+    E_9 Try
+        E_8 F_1 C F_2
+Sections(0):
+/*
+    R_0   Try
+        E_4 L_2 C C H_1 H_2
+*/
+    R_0   Try
+        E_4 L_2 C C G_1 G_2
+    M_1^R Try
+        E_1 L_3 P_1 F_1 F_1 G_2 
+    M_2^R Try
+        E_1 L_3 P_2 G_1 F_2 F_2
+    M_1^L Try
+        E_7 L_1 P_1 G_1 F_2 F_2
+    M_2^L Try
+        E_7 L_1 P_2 F_1 F_1 G_2
+    S_1   Try
+        L_1 L_3 C C D_1 F_2 F_2 E_6 M_1^R M_2^L
+    S_2   Try
+        L_1 L_3 C C F_1 F_1 D_2 E_6 M_1^L M_2^R
+    H     Try
+        E_2 E_8 L L D_1 D_2
