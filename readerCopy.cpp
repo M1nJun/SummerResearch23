@@ -386,6 +386,8 @@ const map<string,vector<vector<int>>> singular_fibers {
         {6,8},
         {7}
     }},
+    
+    //Elliptic Type [1]
     {"E1,I000", {
         //should be one node but how?
         {1}, //G0,SI-2
@@ -470,10 +472,10 @@ const map<string,vector<vector<int>>> singular_fibers {
         {9,11}, //G0,SI-2
         {10} //G0,SI-2
     }},
-    {"E1,VIII-1", {
+    {"E1,VIII1", {
         {}
     }},
-    {"E1,VIII-2", {
+    {"E1,VIII2", {
         {1,2,3}, //G0,SI-2
         {0,4}, //G0,SI-2
         {0}, //G0,SI-2
@@ -484,7 +486,7 @@ const map<string,vector<vector<int>>> singular_fibers {
         {5,8}, //G0,SI-2
         {7}, //G0,SI-2
     }},
-    {"E1,VIII-3", {
+    {"E1,VIII3", {
         {1,2},
         {0,3},
         {0,4},
@@ -492,7 +494,7 @@ const map<string,vector<vector<int>>> singular_fibers {
         {2,5},
         {4}
     }},
-    {"E1,VIII-4", {
+    {"E1,VIII4", {
         {1,2,3}, //G0,SI-2
         {0,4}, //G0,SI-2
         {0}, //G0,SI-2
@@ -506,6 +508,59 @@ const map<string,vector<vector<int>>> singular_fibers {
         {9,11}, //G0,SI-2
         {10,12}, //G0,SI-2
         {11} //G0,SI-2
+    }},
+    {"E1,IX1", {
+        {}
+    }},
+    {"E1,IX2", {
+        {}
+    }},
+    {"E1,IX3", {
+        {1,2,3}, //G0,SI-2
+        {0,4}, //G0,SI-2
+        {0,5}, //G0,SI-2
+        {0,6}, //G0,SI-2
+        {1}, //G0,SI-3
+        {2,7}, //G0,SI-2
+        {3,8}, //G0,SI-2
+        {5,9}, //G0,SI-2
+        {6,10}, //G0,SI-2
+        {7}, //G0,SI-2
+        {10} //G0,SI-2
+    }},
+    {"E1,IX4", {
+        {1,2,3}, //G0,SI-2
+        {0,4}, //G0,SI-2
+        {0,5}, //G0,SI-2
+        {0,6}, //G0,SI-2
+        {1}, //G0,SI-3
+        {2}, //G0,SI-3
+        {3,7}, //G0,SI-2
+        {6,8}, //G0,SI-2
+        {7} //G0,SI-2
+    }},
+
+    //Elliptic Type [2]
+    {"E2,I0I0m", {
+        {}
+    }},
+    {"E2,I0*I0*m", {
+        {}
+    }},
+    {"E2,I0I0*m", {
+        {}
+    }},
+    {"E2,2I0m", {
+        {}
+    }},
+    {"E2,2I0*m", {
+        {}
+    }},
+    {"E2,I0IIm", {
+        {}
+    }},
+    {"E2,I0II*m", {
+        {}
     }},
 
 };
