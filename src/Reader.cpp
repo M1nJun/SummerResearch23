@@ -389,21 +389,36 @@ const map<string,vector<vector<int>>> singular_fibers {
 };
 
 //python-like split yay
+//Function split takes in String 's' and a character 'c'
 vector<string> split(const string& s, char c = '\0') {
+    //vector of strings containing the resulting substrings
     vector<string> result;
+    //keeps track of the index of the last whitespace character
+    //or the specified character encountered.
     int last_whitespace = -1;
     for (int i = 0; i < s.size(); ++i) {
+        //check if 'c' is not 0 and the current character is equal to the specified character 'c'
         if ((c != 0 and s[i] == c) or
+        //check if 'c' is a whitespace character, which include
+        //space(' '), newline('\n'), return('\r'), and tab('\t')
         (c == 0 and (s[i] == ' ' or s[i] == '\n' or s[i] == '\r' or s[i] == '\t'))) {
+            //if true, check if the distance between the current index 'i'
+            //and the index of the last whitespace character is greater than 1.
             if (i - last_whitespace > 1) {
+                //this ensures that only non-empty substrings are added to the result vector.
+                //if true, add the substring to the result vector excluding the whitespace character.
                 result.push_back(s.substr(last_whitespace+1, i - last_whitespace - 1));
             }
+            //update to current index 'i'
             last_whitespace = i;
         }
     }
+    //check if the last whitespace character is not at the end of the string
     if (last_whitespace != s.size() - 1) {
+        //if true, add the substring from 'last_whitespace+1' to the end of the substring to the result vector.
         result.push_back(s.substr(last_whitespace+1));
     }
+    //return vector that contains the split substrings
     return result;
 }
 
