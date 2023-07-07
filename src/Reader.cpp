@@ -438,18 +438,21 @@ bool safe_stoi(const string& s, int& result) {
 
 bool safe_stoll(const string& s, long long& result) {
     try {
-        size_t z;
-        result = stoll(s,&z);
-        if (z != s.size()) {
-            return 0;
+        size_t z;// Variable to store the index of the first invalid character after converting the string to a long long
+        result = stoll(s,&z);// Convert the string to a long long and store the result. z will be updated with the index of the first invalid character.
+        if (z != s.size()) {// Check if there are any remaining characters in the string after the conversion
+            return 0;// Return false (0) indicating conversion failure
         }
     }
-    catch (std::exception& e) {
-        return 0;
+    catch (std::exception& e) {// Catch any exception that occurs during the conversion
+        return 0;// Return false (0) indicating conversion failure
     }
-    return 1;
+    return 1;// Return true (1) indicating successful conversion
 }
-
+/*The safe_stroll function basically just conversts a string to a long long .
+ if the conversion is successful it returns 1 
+ if the conversion is not successful it returns 0 
+*/
 Reader::Reader() {
     summary_style = plain_text_;
     summary_sort = sort_by_n_;
