@@ -422,10 +422,16 @@ vector<string> split(const string& s, char c = '\0') {
     return result;
 }
 
+//this function attempts to convert a string 's' to and integer
+//using the stoi function.
+//it returns a boolean value indicating whether the conversion was successful.
 bool safe_stoi(const string& s, int& result) {
     try {
         size_t z;
         result = stoi(s,&z);
+        //check if the index stored in'z' is different from the size of the input string 's'
+        //if they are different, it means there are non-digit characters present in the string after the converted portion
+        //so returns false(0)
         if (z != s.size()) {
             return 0;
         }
