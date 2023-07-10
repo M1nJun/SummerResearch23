@@ -782,8 +782,23 @@ const map<string,vector<vector<int>>> singular_fibers {
         {6},
         {6}
     }},
+    //have to update the ones above this point.
+    //bc we thought m=1 as differently
 
-    {"E2,2I0*m", {
+    //E2,2I0*m case
+    {"E2,2I0*m1", {
+        {}
+    }},
+    {"E2,2I0*m2", {
+        {}
+    }},
+    {"E2,2I0*m3", {
+        {}
+    }},
+    {"E2,2I0*m4", {
+        {}
+    }},
+    {"E2,2I0*m5", {
         {}
     }},
     {"E2,I0IIm", {
