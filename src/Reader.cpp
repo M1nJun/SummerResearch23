@@ -1204,32 +1204,42 @@ void Reader::parse_section(const vector<string>& def_tokens, const vector<string
     }
 }
 
+//Function handles parsing of a merge by processing 'def_tokens' and 'content_tokens' as inputs.
 void Reader::parse_merge(const vector<string>& def_tokens, const vector<string>& content_tokens) {
+    //check if the curve ID of the merge('def_tokens[0]') is already defined in the 'curve_id' map.
+    //if it is, error generated.
     if (contains(curve_id,def_tokens[0])) {
         error("Curve \'" + def_tokens[0] + "\' is already defined.",line_no-1);
     }
+    //assigns a new ID to the merged curve and updates the 'curve_id' map
     int this_id = curve_no;
     curve_id[def_tokens[0]] = this_id;
     curve_name.emplace_back(def_tokens[0]);
     self_int.emplace_back(-1);
     adj_list.emplace_back();
+    //increments the total number of curves.
     curve_no++;
+    //Counts the intersections of the merged curve with other curves and stores the intersection counts in the 'intersections' map.
     map<int,int> intersections;
     for (const string& curve : content_tokens) {
         if (!contains(curve_id,curve)) {
             error("Curve \'" + curve + "\' is undefined.");
         }
         int id = curve_id[curve];
+        //checks if the merged curve intersects itself. If it does, error generated.
         if (id == this_id) {
             error("Exceptional curve \'" + def_tokens[0] + "\' must be smooth, cannot intersect itself.");
         }
+        //updates adjacency list and self-intersection values of the intersecting curves
         adj_list.back().insert(id);
         adj_list[id].insert(this_id);
         intersections[id]++;
     }
+    //check if intersection curve has enough singularities/arithmetic genus to merge.
     for (auto iter = intersections.begin(); iter != intersections.end(); ++iter) {
         const int& A = iter->first;
         int& singA = iter->second;
+        //check if intersection curve has enough singularities/arithmetic genus to merge.
         if (adj_list[A].count(A) < singA*(singA-1)/2) {
             error("Curve \'" + curve_name[A] + "\' does not have enough singularities/arithmetic genus to merge.");
         }
@@ -1250,14 +1260,19 @@ void Reader::parse_merge(const vector<string>& def_tokens, const vector<string>&
             }
         }
     }
+    //Canonical_Divisor K? perfroms blow-up on the merged curve
     K.blowup(this_id, intersections);
 
+    //updates the 'max_test_number' variable by comparing it to the size of the 'def_tokens' -1
     max_test_number = std::max(max_test_number,(int)def_tokens.size() - 1);
+    //processes the test options for the merge. For each test, it checks if a specific test option is provided in the def_tokens.
+    //if not, it usese the general option from the end of def_tokens
     string option = def_tokens.size() == 1 ? "T" : def_tokens.back();
     for (int t = 0; t < tests_no; ++t) {
         if (def_tokens.size() > t + 1 + tests_start_index) {
             option = def_tokens[t + 1 + tests_start_index];
         }
+        //depending on the option value, it adds the merged curve's ID to the corresponding vector
         if (option == "Fix" or option == "F") {
             fixed_curves[t].emplace_back(this_id);
         }
@@ -1272,6 +1287,7 @@ void Reader::parse_merge(const vector<string>& def_tokens, const vector<string>&
         }
     }
 }
+
 int Canonical_Divisor::exceptional_intersection(map<int,int>& intersections) {
     int result = 0;
     for (auto& comp : components_including_forgotten) {
