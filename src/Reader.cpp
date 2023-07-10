@@ -501,6 +501,7 @@ Reader::Reader() {
     error_stream = &std::cerr;
 }
 
+//can't explain fully, too much variables.
 void Reader::parse(istream& input) {
     string line;
     string next_line;
@@ -670,9 +671,13 @@ void Reader::parse(istream& input) {
         warning("Parse only debug mode: no testing is done.");
     }
 }
-
+//The function handles different options by checking the value of the first token.
+//takes a vector of strings called 'tokens' as input, which contains the parsed tokens from a line of input.
 void Reader::parse_option(const vector<string>& tokens) {
+    //checks the value of the first token to determine the option and performs different actions based on the option.
     if (tokens[0] == "Tests:") {
+        //checks the size of 'tokens' to ensure it has the correct number of arguments.
+        //it then processes the arguments to determine the number of tests to run and sets the variables.
         if (tokens.size() != 2 and !(tokens.size() == 4 and tokens[2] == "-")) {
             error("Argument for option \'Tests\' must be \'<number>\' or \'<number> - <number>\'.");
         }
@@ -722,7 +727,10 @@ void Reader::parse_option(const vector<string>& tokens) {
             return;
         }
     }
+    //if the first token is 'Subtests',
     else if (tokens[0] == "SubTests:") {
+        //checks the size of 'tokens' to ensure it has the correct number of arguments.
+        //same when it was 'tests'
         if (!(tokens.size() == 4 and tokens[2] == "-")) {
             error("Argument for option \'SubTests\' must be \'<number> - <number>\'.");
         }
@@ -738,6 +746,7 @@ void Reader::parse_option(const vector<string>& tokens) {
         subtest_end = finish;
         return;
     }
+    //if the first token is 'output', it checks the size of 'tokens' and sets the 'output_filename' variable to the specified value.
     else if (tokens[0] == "Output:") {
         if (tokens.size() != 2) {
             error("Option \'Output\' must take exactly one argument.");
@@ -745,6 +754,7 @@ void Reader::parse_option(const vector<string>& tokens) {
         output_filename = tokens[1];
         return;
     }
+    //if first token is 'summary output', checks size of tokens, and sets 'summary_filename' to the specified value.
     else if (tokens[0] == "Summary_Output:") {
         if (tokens.size() != 2) {
             error("Option \'Summary_Output\' must take exactly one argument.");
@@ -752,6 +762,7 @@ void Reader::parse_option(const vector<string>& tokens) {
         summary_filename = tokens[1];
         return;
     }
+    //if first token in 'pretest file', it checks the size of tokens, and sets 'pretest_name' to the specified value.
     else if (tokens[0] == "Pretest_File:") {
         if (tokens.size() != 2) {
             error("Option \'Pretest_File\' must take exactly one argument.");
@@ -1053,6 +1064,7 @@ void Reader::parse_option(const vector<string>& tokens) {
         curves_used_exactly = value;
         return;
     }
+    //if none of the above conditions are met, it generates an error
     else {
         error("Invalid option: " + tokens[0]);
     }
