@@ -1140,17 +1140,26 @@ void Reader::parse_fiber(const vector<string>& def_tokens, const vector<string>&
     }
 }
 
+//Function handles the parsing of a section.
+//extracts information such as curve IDs, intersections, self-intersection values, and test options
+//updates the data structures accordingly.
+//takes two vectors of strings as input. 'def_tokens' and 'content_tokens'
 void Reader::parse_section(const vector<string>& def_tokens, const vector<string>& content_tokens) {
+    //check if the curve ID of the section('def_tokens[0]) is already defined in the 'curve_id' map.
+    //If so, error is generated
     if (contains(curve_id,def_tokens[0])) {
         error("Curve \'" + def_tokens[0] + "\' is already defined.",line_no-1);
     }
+    //assigns a new ID to the section and updates 'curve_id' map and others.
     int this_id = curve_no;
     curve_id[def_tokens[0]] = this_id;
     sections.insert(this_id);
     curve_name.emplace_back(def_tokens[0]);
     adj_list.emplace_back();
+    //increments total number of curves
     curve_no++;
-    // Count the intersections with other curves and use it to get the new self_intersection
+    // Original Comment: Count the intersections with other curves and use it to get the new self_intersection
+    //stores the new intersection counts in the 'intersections' map
     map<int,int> intersections;
     for (const string& curve : content_tokens) {
         if (!contains(curve_id,curve)) {
@@ -1161,6 +1170,8 @@ void Reader::parse_section(const vector<string>& def_tokens, const vector<string
         if (id != this_id) adj_list[id].insert(this_id);
         intersections[id]++;
     }
+
+    //based on the section_input_mode', it calculates the new self-intersection value for the section and stores it in the 'self_int' vector.
     if (section_input_mode == by_self_intersection_) {
         self_int.emplace_back(current_section_argument + K.blowup_curve_self_int_delta(intersections));
     }
@@ -1168,12 +1179,16 @@ void Reader::parse_section(const vector<string>& def_tokens, const vector<string
         self_int.emplace_back(2*intersections[this_id] - 2 - current_section_argument - K.exceptional_intersection(intersections));
     }
 
+    //updates the 'max_test_number' by comparing it to the size of def_tokens -1.
     max_test_number = std::max(max_test_number,(int)def_tokens.size() - 1);
     string option = def_tokens.size() == 1 ? "T" : def_tokens.back();
+    //processes the test options for the section.
+    //for each test, checks if a specific test option is provided in the def_token
     for (int t = 0; t < tests_no; ++t) {
         if (def_tokens.size() > t + 1 + tests_start_index) {
             option = def_tokens[t + 1 + tests_start_index];
         }
+        //depending on the option value, it adds the section's ID to the corresponding vector, 'fixed_curves','try_curves','ignored_curves'
         if (option == "Fix" or option == "F") {
             fixed_curves[t].emplace_back(this_id);
         }
