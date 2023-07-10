@@ -508,9 +508,13 @@ void Reader::parse(istream& input) {
     vector<string> next_tokens;
     State previous_state = start_;
     State state = start_;
+    //reads lines from the input stream
     while (getline(input,line)) {
+        //keeps track of the line number being processed
         line_no++;
+        //splits current line into tokens
         tokens = split(line);
+        //perform several checks on tokens to determine if the line should be skipped or the program should enter a different state
         if (tokens.size() == 0) continue;
         if (tokens[0][0] == '#') continue;
         if (tokens[0].size() > 1 and tokens[0][0] == '/' and tokens[0][1] == '/') continue;
@@ -519,6 +523,7 @@ void Reader::parse(istream& input) {
             state = comment_;
             continue;
         }
+        //check if current state is comment state, it adjusts the state
         if (state == comment_) {
             if (tokens[0].size() > 1 and tokens[0][0] == '*' and tokens[0][1] == '/') {
                 state = previous_state;
@@ -526,7 +531,9 @@ void Reader::parse(istream& input) {
             }
             continue;
         }
+        //check if line ends with a colon, and meets certain conditions, it changes the state based on the content of the line.
         if (tokens.size() == 1 and tokens[0].back() == ':') {
+            
             if (tokens[0] == "Fibers:") {
                 state = fibers_;
                 continue;
@@ -573,6 +580,7 @@ void Reader::parse(istream& input) {
             }
             warning("Token \'" + tokens[0] + "\' is not a command. Treated as a name.");
         }
+        //if none of the above conditions are met, it calls different parsing functions depending on the state
         switch (state) {
         case start_:
             parse_option(tokens);
@@ -620,6 +628,7 @@ void Reader::parse(istream& input) {
         }
     }
 
+    //performs additional checks and operations on the data parsed during the loop.
     for (int i = 0; i < curve_no; ++i) {
         if (contains(adj_list[i],i)) {
             error("Curve \'" + curve_name[i] + "\' still has singularities.");
@@ -651,6 +660,7 @@ void Reader::parse(istream& input) {
         }
     }
 
+    //prints warning and messages based on condiiton
     if (tests_no > 1 and tests_start_index + tests_no > max_test_number) {
         warning("Test range exedes number of tests given by curve options. Redundant tests are ignored.");
         tests_no = std::max(1,max_test_number - tests_start_index);
