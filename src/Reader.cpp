@@ -1071,23 +1071,23 @@ void Reader::parse_option(const vector<string>& tokens) {
 }
 
 void Reader::parse_fiber(const vector<string>& def_tokens, const vector<string>& content_tokens) {
-    if (!contains(singular_fibers,def_tokens[0])) {
+    if (!contains(singular_fibers,def_tokens[0])) {// Check if the fiber type is known or if the command is invalid
         error("Unknown fiber type or invalid command: " + def_tokens[0] + ".",line_no-1);
     }
-    fiber_type.emplace_back(def_tokens[0]);
-    fibers.emplace_back();
-    int initial_index = curve_no;
-    int n = content_tokens.size();
-    for (const string& curve : content_tokens) {
-        if (contains(curve_id,curve)) {
+    fiber_type.emplace_back(def_tokens[0]); // Add the fiber type to the fiber_type vector
+    fibers.emplace_back();// Add an empty vector to the fibers vector to store the curves of the fiber
+    int initial_index = curve_no;// Store the current curve_no value as the initial_index
+    int n = content_tokens.size();// Get the number of content tokens
+    for (const string& curve : content_tokens) { 
+        if (contains(curve_id,curve)) {// Check if the curve is already defined
             error("Curve \'" + curve + "\' is already defined.");
         }
-        curve_id[curve] = curve_no;
+        curve_id[curve] = curve_no;// Assign a curve number to the curve and update relevant data structures
         fibers.back().emplace_back(curve_no);
         curves_in_fibers.insert(curve_no);
         curve_name.emplace_back(curve);
         adj_list.emplace_back();
-        if (n == 1) {
+        if (n == 1) {// Determine the self-intersection value for the curve based on the number of content tokens
             self_int.emplace_back(0);
         }
         else {
@@ -1095,33 +1095,33 @@ void Reader::parse_fiber(const vector<string>& def_tokens, const vector<string>&
         }
         curve_no++;
     }
-    const vector<vector<int>> &fiber_graph = singular_fibers.at(def_tokens[0]);
-    if (fiber_graph.size() != n) {
+    const vector<vector<int>> &fiber_graph = singular_fibers.at(def_tokens[0]);// Get the fiber graph for the current fiber type
+    if (fiber_graph.size() != n) {// Check if the size of the fiber graph matches the number of content tokens
         error("Fiber " + def_tokens[0] + " requires " + to_string(n) + ", " + to_string(content_tokens.size()) + " found.");
-    }
+    }// Update the adjacency list based on the fiber graph
     for (int i = 0; i < n; ++i) {
         for (int neighbor : fiber_graph[i]) {
             adj_list[initial_index + i].insert(initial_index + neighbor);
         }
     }
 
-    max_test_number = std::max(max_test_number,(int)def_tokens.size() - 1);
-    string option = def_tokens.size() == 1 ? "T" : def_tokens.back();
-    for (int t = 0; t < tests_no; ++t) {
-        if (def_tokens.size() > t + 1 + tests_start_index) {
+    max_test_number = std::max(max_test_number,(int)def_tokens.size() - 1);// Update the max_test_number based on the number of test options in the definition tokens
+    string option = def_tokens.size() == 1 ? "T" : def_tokens.back();// Initialize the option variable based on the last token in the definition tokens
+    for (int t = 0; t < tests_no; ++t) {   // Process each test option
+        if (def_tokens.size() > t + 1 + tests_start_index) {// Check if the option is provided in the definition tokens
             option = def_tokens[t + 1 + tests_start_index];
         }
-        if (option == "Fix" or option == "F") {
-            for (int curve : fibers.back()) {
+        if (option == "Fix" or option == "F") {// Handle different test options
+            for (int curve : fibers.back()) {// Add the curves of the current fiber to the fixed_curves vector for the current test
                 fixed_curves[t].emplace_back(curve);
             }
         }
         else if (option == "Try" or option == "T") {
-            for (int curve : fibers.back()) {
+            for (int curve : fibers.back()) {// Add the curves of the current fiber to the try_curves vector for the current test
                 try_curves[t].emplace_back(curve);
             }
         }
-        else if (option == "Dis" or option == "D") {
+        else if (option == "Dis" or option == "D") {// Handle the "Dis" or "D" option based on the number of content tokens
             if (n == 1){
                 ignored_curves[t].emplace_back(fibers.back()[0]);
             }
@@ -1130,11 +1130,11 @@ void Reader::parse_fiber(const vector<string>& def_tokens, const vector<string>&
             }
         }
         else if (option == "Ign" or option == "I") {
-            for (int curve : fibers.back()) {
+            for (int curve : fibers.back()) {// Add the curves of the current fiber to the ignored_curves vector for the current test
                 ignored_curves[t].emplace_back(curve);
             }
         }
-        else {
+        else { // Handle invalid test options
             error("Invalid test option for Fiber " + def_tokens[0] + ".",line_no-1);
         }
     }
