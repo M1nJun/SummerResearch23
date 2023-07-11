@@ -1292,8 +1292,7 @@ int Canonical_Divisor::exceptional_intersection(map<int,int>& intersections) {
     int result = 0;
     //iterates over 'components_including_forgotten' each element is assigned to comp.
     //then the id of that comp object is summed into result
-    for (auto& comp : components_including_forgotten) {// Compute the contribution of the component to the exceptional intersection
-        // by multiplying its multiplicity with the corresponding intersection value
+    for (auto& comp : components_including_forgotten) {
         result += comp.multiplicity*intersections[comp.id];
     }
     return result; // Return the total exceptional intersection value
@@ -1324,26 +1323,36 @@ int Canonical_Divisor::blowup_curve_self_int_delta(map<int,int>& intersections) 
 }
 /*Over all this This function calculates the delta of the arithmetic genus resulting from blowing up a curve, based on the provided intersections map
  and the components stored in the components_including_forgotten vector.*/
+
 void Canonical_Divisor::blowup(int id, const map<int,int>& intersections) {
-    self_int--;
+    self_int--;// Decrease the self-intersection value by 1
+    // Initialize variables for multiplicity, left parent, and right parent
     int mult = 1;
     int left_p = -1;
     int right_p = -1;
+     // Iterate over the components_including_forgotten vector
     for (auto& comp : components_including_forgotten) {
+        // Check if the current component id exists in the intersections map and its intersection value is greater than 0
         if (contains(intersections,comp.id) and intersections.at(comp.id) > 0) {
+            // Assign the component id as the left parent if left_p is not assigned yet, otherwise assign it as the right parent
             if (left_p == -1) {
                 left_p = comp.id;
             }
             else {
                 right_p = comp.id;
             }
+            // Increase the multiplicity by the component's multiplicity value
             mult += comp.multiplicity;
         }
     }
+    // Add the current id to the used_components_including_forgotten set
     used_components_including_forgotten.insert(id);
+    // Create a new component with the provided id, multiplicity, left parent, and right parent,
+    // and add it to the components_including_forgotten vector
     components_including_forgotten.emplace_back(id,mult,left_p,right_p);
 }
-
+/* Over all This function performs the blow-up operation on a canonical divisor,
+ based on the provided id and intersections map*/
 void Reader::parse_make_fiber(const vector<string>& def_tokens, const vector<string>& content_tokens) {
     fiber_type.emplace_back(def_tokens[0]);
     fibers.emplace_back();
