@@ -1293,29 +1293,39 @@ int Canonical_Divisor::exceptional_intersection(map<int,int>& intersections) {
     //iterates over 'components_including_forgotten' each element is assigned to comp.
     //then the id of that comp object is summed into result
     for (auto& comp : components_including_forgotten) {
+    int result = 0;// Iterate over each component in the components_including_forgotten vector
+    for (auto& comp : components_including_forgotten) {// Compute the contribution of the component to the exceptional intersection
+        // by multiplying its multiplicity with the corresponding intersection value
         result += comp.multiplicity*intersections[comp.id];
     }
-    //returns an integer
-    return result;
+    return result; // Return the total exceptional intersection value
 }
+/*Over all this This function calculates the exceptional intersection value based on the provided intersections
+ map and the components stored in the components_including_forgotten vector. It iterates over each component, 
+ retrieves its multiplicity and corresponding intersection value from the intersections map, and accumulates the product of the multiplicity and intersection value.
+  The final result is returned as the exceptional intersection value. */
 
 int Canonical_Divisor::blowup_curve_self_int_delta(map<int,int>& intersections) {
-    int ex_inters = exceptional_intersection(intersections);
-    int delta_arithmetic_genus = 0;
+    int ex_inters = exceptional_intersection(intersections);// Compute the exceptional intersection value by calling the exceptional_intersection function
+    int delta_arithmetic_genus = 0; // Initialize the delta of the arithmetic genus
     for (auto iter = components_including_forgotten.rbegin(); iter != components_including_forgotten.rend(); ++iter) {
-        auto& comp = *iter;
-        int inters = intersections[comp.id];
-        delta_arithmetic_genus += inters*(inters-1)/2;
-        if (comp.left_parent != -1) {
+       // Iterate over the components_including_forgotten vector in reverse order using a reverse iterator
+        auto& comp = *iter;// Retrieve the current component
+        int inters = intersections[comp.id];// Retrieve the intersection value of the current component
+        delta_arithmetic_genus += inters*(inters-1)/2;// Update the delta of the arithmetic genus by adding the contribution from the current component
+        if (comp.left_parent != -1) {// Update the intersections of the left and right parents of the current component
+        // by adding the intersection value of the current component
             intersections[comp.left_parent] += inters;
         }
         if (comp.right_parent != -1) {
             intersections[comp.right_parent] += inters;
         }
-    }
+    }// Compute the final delta of the arithmetic genus by subtracting the exceptional intersections
+    // and doubling the negative value of delta_arithmetic_genus
     return -2*delta_arithmetic_genus - ex_inters;
 }
-
+/*Over all this This function calculates the delta of the arithmetic genus resulting from blowing up a curve, based on the provided intersections map
+ and the components stored in the components_including_forgotten vector.*/
 void Canonical_Divisor::blowup(int id, const map<int,int>& intersections) {
     self_int--;
     int mult = 1;
