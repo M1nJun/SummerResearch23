@@ -1354,12 +1354,16 @@ void Canonical_Divisor::blowup(int id, const map<int,int>& intersections) {
 /* Over all This function performs the blow-up operation on a canonical divisor,
  based on the provided id and intersections map*/
 void Reader::parse_make_fiber(const vector<string>& def_tokens, const vector<string>& content_tokens) {
+    //adds the first element of def_tokens to the fiber_type.
     fiber_type.emplace_back(def_tokens[0]);
+    //adds an empty vectore to the fibers
     fibers.emplace_back();
+    //n is the size of content_tokens
     int n = content_tokens.size();
     if (n == 0) {
         error("Fiber declaration empty.");
     }
+    
     for (const string& curve : content_tokens) {
         if (!contains(curve_id,curve)) {
             error("Curve \'" + curve + "\' is undefined.");
