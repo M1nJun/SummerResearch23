@@ -1290,9 +1290,12 @@ void Reader::parse_merge(const vector<string>& def_tokens, const vector<string>&
 
 int Canonical_Divisor::exceptional_intersection(map<int,int>& intersections) {
     int result = 0;
+    //iterates over 'components_including_forgotten' each element is assigned to comp.
+    //then the id of that comp object is summed into result
     for (auto& comp : components_including_forgotten) {
         result += comp.multiplicity*intersections[comp.id];
     }
+    //returns an integer
     return result;
 }
 
