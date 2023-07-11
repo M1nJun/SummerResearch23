@@ -1292,8 +1292,6 @@ int Canonical_Divisor::exceptional_intersection(map<int,int>& intersections) {
     int result = 0;
     //iterates over 'components_including_forgotten' each element is assigned to comp.
     //then the id of that comp object is summed into result
-    for (auto& comp : components_including_forgotten) {
-    int result = 0;// Iterate over each component in the components_including_forgotten vector
     for (auto& comp : components_including_forgotten) {// Compute the contribution of the component to the exceptional intersection
         // by multiplying its multiplicity with the corresponding intersection value
         result += comp.multiplicity*intersections[comp.id];
