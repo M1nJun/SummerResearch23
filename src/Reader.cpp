@@ -1462,30 +1462,32 @@ void Reader::parse_forget_exceptional(const vector<string>& tokens) {
 }
 
 long long Reader::get_test_numbers(vector<long long>& number_of_tests) const {
-    if (curves_used_exactly != -1) {
-        return get_test_numbers_exact_curves(number_of_tests);
+    if (curves_used_exactly != -1) {// Check if there is a specific number of curves used exactly
+        return get_test_numbers_exact_curves(number_of_tests);// Call another function to handle that case
     }
-    long long total_tests = 0;
-    number_of_tests.resize(tests_no);
+    long long total_tests = 0;// Variable to store the total number of test cases
+    number_of_tests.resize(tests_no);// Resize the vector to store the number of tests for each individual test
+  // Iterate over each test
     for (int t = 0; t < tests_no; ++t) {
-        int curves_to_test = try_curves[t].size();
-        for (auto& choose_set : choose_curves[t]) {
+        int curves_to_test = try_curves[t].size();// Initialize the number of curves to test with the size of the "try_curves" vector
+
+        for (auto& choose_set : choose_curves[t]) {// Calculate the total number of curves to test by adding the sizes of the "choose_curves" sets
             curves_to_test += choose_set.size();
         }
-        if (curves_to_test >= 61) {
+        if (curves_to_test >= 61) {// Check if the number of curves to test exceeds the limit
             error("Too many test cases.");
         }
-        long long current_test_number = 1ll<<try_curves[t].size();
-        for (auto& choose_set : choose_curves[t]) {
+        long long current_test_number = 1ll<<try_curves[t].size();// Calculate the current test number based on the size of the "try_curves" vector
+        for (auto& choose_set : choose_curves[t]) {// Multiply the current test number by the number of options in each "choose_curves" set
             current_test_number *= (1ll<<choose_set.size()) - 1ll;
         }
-        total_tests += current_test_number;
+        total_tests += current_test_number;// Update the total number of test cases by adding the current test number
         if (total_tests >= (1ll<<62)) {
             error("Too many test cases.");
         }
-        number_of_tests[t] = current_test_number;
+        number_of_tests[t] = current_test_number; // Store the current test number in the vector of number of tests
     }
-    return total_tests;
+    return total_tests;// Return the total number of test cases
 }
 
 //calculates the number of test cases for each test and stores result in the 'number_of_tests' vector.
