@@ -1353,68 +1353,68 @@ void Canonical_Divisor::blowup(int id, const map<int,int>& intersections) {
 }
 /* Over all This function performs the blow-up operation on a canonical divisor,
  based on the provided id and intersections map*/
- 
+
 void Reader::parse_make_fiber(const vector<string>& def_tokens, const vector<string>& content_tokens) {
-    //adds the first element of def_tokens to the fiber_type.
-    fiber_type.emplace_back(def_tokens[0]);
-    //adds an empty vectore to the fibers
-    fibers.emplace_back();
-    //n is the size of content_tokens
-    int n = content_tokens.size();
-    if (n == 0) {
+    fiber_type.emplace_back(def_tokens[0]); // Add the fiber type to the fiber_type vector
+    fibers.emplace_back(); // Add an empty vector for the fiber
+    int n = content_tokens.size();// Get the size of the content_tokens vector
+    if (n == 0) {// Check if the content_tokens vector is empty
         error("Fiber declaration empty.");
     }
-    
-    for (const string& curve : content_tokens) {
-        if (!contains(curve_id,curve)) {
+    for (const string& curve : content_tokens) { // Iterate over the content_tokens vector
+        if (!contains(curve_id,curve)) {// Check if the curve is defined in the curve_id map
             error("Curve \'" + curve + "\' is undefined.");
         }
-        int id = curve_id[curve];
-        if (contains(curves_in_fibers,id)) {
+        int id = curve_id[curve];// Get the id of the curve from the curve_id map
+        if (contains(curves_in_fibers,id)) { // Check if the curve is already part of a fiber
             error("Curve \'" + curve + "\' is already part of a fiber.");
         }
-        fibers.back().emplace_back(id);
-        curves_in_fibers.insert(id);
-        if (contains(K.used_components_including_forgotten,id)) {
+        fibers.back().emplace_back(id);// Add the curve id to the current fiber
+        curves_in_fibers.insert(id);// Add the curve id to the curves_in_fibers set
+        if (contains(K.used_components_including_forgotten,id)) {// Check if the curve is in the used_components_including_forgotten set
             forgotten_exceptionals.insert(id);
         }
-        sections.erase(id);
-        for (int t = 0; t < tests_no; ++t) {
-            auto it = std::find(fixed_curves[t].begin(),fixed_curves[t].end(),id);
-            if (it != fixed_curves[t].end()) {
-                std::iter_swap(it,fixed_curves[t].end()-1);
-                fixed_curves[t].erase(fixed_curves[t].end()-1);
+        sections.erase(id);// Remove the curve id from the sections map
+        for (int t = 0; t < tests_no; ++t) {// Update the fixed_curves, try_curves, and ignored_curves vectors for each test
+            auto it = std::find(fixed_curves[t].begin(),fixed_curves[t].end(),id);// Find the position of 'id' in 'fixed_curves[t]' vector
+            if (it != fixed_curves[t].end()) {// Check if 'id' is found in 'fixed_curves[t]'
+                std::iter_swap(it,fixed_curves[t].end()-1);// Swap 'id' with the last element in 'fixed_curves[t]'
+                fixed_curves[t].erase(fixed_curves[t].end()-1);// Erase the last element in 'fixed_curves[t]'
             }
-            it = std::find(try_curves[t].begin(),try_curves[t].end(),id);
-            if (it != try_curves[t].end()) {
-                std::iter_swap(it,try_curves[t].end()-1);
-                try_curves[t].erase(try_curves[t].end()-1);
+            it = std::find(try_curves[t].begin(),try_curves[t].end(),id);// Find the position of 'id' in 'try_curves[t]' vector
+            if (it != try_curves[t].end()) {// Check if 'id' is found in 'try_curves[t]'
+                std::iter_swap(it,try_curves[t].end()-1);// Swap 'id' with the last element in 'try_curves[t]'
+                try_curves[t].erase(try_curves[t].end()-1);// Erase the last element in 'try_curves[t]'
             }
-            it = std::find(ignored_curves[t].begin(),ignored_curves[t].end(),id);
-            if (it != ignored_curves[t].end()) {
-                std::iter_swap(it,ignored_curves[t].end()-1);
-                ignored_curves[t].erase(ignored_curves[t].end()-1);
+            it = std::find(ignored_curves[t].begin(),ignored_curves[t].end(),id);// Find the position of 'id' in 'ignored_curves[t]' vector
+            if (it != ignored_curves[t].end()) {  // Check if 'id' is found in 'ignored_curves[t]'
+                std::iter_swap(it,ignored_curves[t].end()-1);// Swap 'id' with the last element in 'ignored_curves[t]'
+                ignored_curves[t].erase(ignored_curves[t].end()-1);// Erase the last element in 'ignored_curves[t]'
             }
-        }
+        }/*Over all this loop The loop iterates over the range of tests, and for each test, it searches for the position of id in the corresponding vector (fixed_curves[t], 
+        try_curves[t], or ignored_curves[t]). If id is found, it swaps it with the last element in the vector and then removes the last element. Essentially,
+         it moves id to the end of the vector and removes it from the vector.*/
     }
     max_test_number = std::max(max_test_number,(int)def_tokens.size() - 1);
+    // Update the max_test_number based on the number of tokens in def_tokens
     string option = def_tokens.size() == 1 ? "T" : def_tokens.back();
-    for (int t = 0; t < tests_no; ++t) {
-        if (def_tokens.size() > t + 1 + tests_start_index) {
+    // Determine the option based on the number of tokens in def_tokens
+    for (int t = 0; t < tests_no; ++t) {// Iterate over the tests
+        if (def_tokens.size() > t + 1 + tests_start_index) {// Check if there are more tokens in def_tokens for the current test
             option = def_tokens[t + 1 + tests_start_index];
         }
-        if (option == "Fix" or option == "F") {
-            for (int curve : fibers.back()) {
+        if (option == "Fix" or option == "F") {// Update the corresponding vectors based on the option
+            for (int curve : fibers.back()) {// Update 'fixed_curves[t]' vector by adding curves from the current fiber
                 fixed_curves[t].emplace_back(curve);
             }
         }
         else if (option == "Try" or option == "T") {
-            for (int curve : fibers.back()) {
+            for (int curve : fibers.back()) {// Update 'try_curves[t]' vector by adding curves from the current fiber
                 try_curves[t].emplace_back(curve);
             }
         }
         else if (option == "Dis" or option == "D") {
-            if (n == 1){
+            if (n == 1){// Update 'choose_curves[t]' or 'ignored_curves[t]' vector based on the number of curves in the current fiber
                 ignored_curves[t].emplace_back(fibers.back()[0]);
             }
             else {
@@ -1422,11 +1422,11 @@ void Reader::parse_make_fiber(const vector<string>& def_tokens, const vector<str
             }
         }
         else if (option == "Ign" or option == "I") {
-            for (int curve : fibers.back()) {
+            for (int curve : fibers.back()) {// Update 'ignored_curves[t]' vector by adding curves from the current fiber
                 ignored_curves[t].emplace_back(curve);
             }
         }
-        else {
+        else {// Handle the case where the option is invalid
             error("Invalid test option for MakeFiber " + def_tokens[0] + ".",line_no-1);
         }
     }
