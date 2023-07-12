@@ -1488,27 +1488,43 @@ long long Reader::get_test_numbers(vector<long long>& number_of_tests) const {
     return total_tests;
 }
 
+//calculates the number of test cases for each test and stores result in the 'number_of_tests' vector.
 long long Reader::get_test_numbers_exact_curves(vector<long long>& number_of_tests) const {
+    //keep track of the total number of tests
     long long total_tests = 0;
+    //resize so that number_of_tests has the same size as tests_no
     number_of_tests.resize(tests_no);
     for (int t = 0; t < tests_no; ++t) {
+        //retrieves the number of curves to test for the current test case
         int curves_to_test = try_curves[t].size();
+        //iterates over each element of choose_curves and adds the size of each 'choose_set' to 'curves_to_test'
         for (auto& choose_set : choose_curves[t]) {
             curves_to_test += choose_set.size();
         }
+        //check if total number of curves to test is greater than or equal to 61
         if (curves_to_test >= 61) {
+            //if so, error
             error("Too many test cases.");
         }
+        //retrieves the number of fixed curves for the currnet test case
         int fixed = fixed_curves[t].size();
+        //check if the number of fixed curves is less than or equal to the used curves
+        //and the sum of curves to test + fixed vurves is greater than or equal to curves used exactly.
         if (fixed <= curves_used_exactly and curves_to_test + fixed >= curves_used_exactly) {
+            //if so, calculates the current test number
             long long current_test_number = algs::nCr(curves_to_test, curves_used_exactly - fixed);
+            //adds the current test number to the total tests
             total_tests += current_test_number;
+            //check if total test is greater than or equal to 2^62
             if (total_tests >= (1ll<<62)) {
+                //if so, error
                 error("Too many test cases.");
             }
+            //assigns the current test numbert to the corresponding index in the 'number_of_tests' vector
             number_of_tests[t] = current_test_number;
         }
         else {
+            //if not, assigns 0 to the number_of_tests vector
             number_of_tests[t] = 0;
         }
     }
