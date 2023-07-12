@@ -1432,19 +1432,29 @@ void Reader::parse_make_fiber(const vector<string>& def_tokens, const vector<str
     }
 }
 
+//Parses each curve in 'tokens' vector and performs checks
 void Reader::parse_forget_exceptional(const vector<string>& tokens) {
+    //iterates over each element in tokens
     for (const string& curve : tokens) {
+        //check if curve in 'tokens' exists in curve_id
         if (!contains(curve_id,curve)) {
+            //if not then error
             error("Curve \'" + curve + "\' is undefined.");
         }
+        //if it does exist, it saves the associated id from the "curve_id" map
         int id = curve_id[curve];
+        //check if the id is present in K.used_components_including_forgotten
         if (!contains(K.used_components_including_forgotten,id)) {
+            //if not, then error
             error("Curve \'" + curve + "\' is not an exceptional.");
         }
+        //check if the id is present in forgotten_exceptionals
         if (contains(forgotten_exceptionals,id)) {
+            //if so, warning message
             warning("Curve \'" + curve + "\' is already forgotten.");
         }
         else {
+            //if not the case above, it adds the 'id' to sections and forgotten_exceptionals
             sections.insert(id);
             forgotten_exceptionals.insert(id);
         }
