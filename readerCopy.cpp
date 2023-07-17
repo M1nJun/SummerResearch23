@@ -12,10 +12,9 @@ using std::getline;
 using std::stoi;
 using std::to_string;
 
-
-const map<string,vector<vector<int>>> singular_fibers {
+const map<string,vector<std::tuple<vector<int>, int, int>> singular_fibers {
     {"I1", {
-        {0}
+        {{0}, 1, -2}
     }},
     {"I2", {
         {1,1},
@@ -1510,6 +1509,7 @@ void Reader::parse_fiber(const vector<string>& def_tokens, const vector<string>&
     if (fiber_graph.size() != n) {
         error("Fiber " + def_tokens[0] + " requires " + to_string(n) + ", " + to_string(content_tokens.size()) + " found.");
     }
+    //reading the hardcoded fibers
     for (int i = 0; i < n; ++i) {
         for (int neighbor : fiber_graph[i]) {
             adj_list[initial_index + i].insert(initial_index + neighbor);
