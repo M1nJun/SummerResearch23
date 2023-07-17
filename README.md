@@ -2,7 +2,8 @@
 
 This is a program that given a configuration of rational curves on an elliptic surface, does successions of blow ups in hopes to obtain configurations of resolutions of Wahl singularities (Wahl chains).
 
-Specifically, it blows up exhaustively to obtain all possible* configurations of:
+Specifically, it blows up exhaustively to obtain all possible\* configurations of:
+
 - one Wahl chain,
 - two Wahl chains,
 - one <img src="https://render.githubusercontent.com/render/math?math=\mathbb Q \mathcal H \mathcal D^3"> plumbing graph,
@@ -52,7 +53,7 @@ The result will be an executable file called `Search.exe`.
 
 To test a configuration, a test file must be provided. For example, if the test file is called, `test.txt`, one must run from the Windows terminal the line
 
-    Search.exe test.txt
+    Search.exe Tests/test.txt
 
 or if using Linux or OSX,
 
@@ -94,6 +95,7 @@ One more option for Fibers is provided. A **discard** fiber treats all its irred
 A test file consists of settings and curve definitions. All settings must be declared before starting the definitions of curves.
 
 Single and multi-line comments are available loosely following `Python` and `C++` comment syntax.
+
 - Single comments are done by **starting** the line with `#` or `//`
 - Multiline comments begin with `/*` and end with `*/`. **Both symbols shall be at the start of the line**.
 
@@ -113,8 +115,8 @@ Single and multi-line comments are available loosely following `Python` and `C++
     This one
     is not */
 
-
 ## Settings
+
 There are several settings that affect the search in different ways. All of them are of the form
 
     Setting: Option/value
@@ -131,6 +133,7 @@ Following is the full list of settings and their possible options:
   Defaults to `1`.
 
   By putting `Tests: 0` no test is done. The program only dumps the information of the complete configuration to the `.jsonl` file.
+
 - `Output`: Takes the name of the file where a database of examples will be exported. It will be of extension `.jsonl`. For example if one writes
 
       Output: filename
@@ -138,12 +141,15 @@ Following is the full list of settings and their possible options:
   A file called `filename.jsonl` will be created. Unfortunately, the filename shall not contain white spaces.
 
   Defaults to `OUT`.
+
 - `Summary_Style`: Determines the style of the summary file. Takes two possible options
+
   - `LaTeX_Table`: Summary is exported as an easy to include table in Latex format.
   - `Plain_Text`: Summary is exported as a plain text file.
   - `skip`: Does not export summary.
 
   Defaults to `Plain_Text`.
+
 - `Summary_Include_GCD`: For examples with two singularities, include in the summary the gcd of the common denominators for discrepancies. Useful when calculating fundamental groups. Takes `Y` as yes and `N` as no.
   Defaults to `N`.
 - `LaTeX_Include_Subsection`: When the summary is styled as latex tables, includes a `\subsection` before each table with some invariants. Takes `Y` as yes and `N` as no.
@@ -155,18 +161,23 @@ Following is the full list of settings and their possible options:
   A file called `filename.txt` will be created. Unfortunately, the filename shall not contain white spaces.
 
   Defaults to `SUMMARY`.
+
 - `Summary_Sort`: Determines how to sort the examples to export them to the summary file. Takes two possible options:
+
   - `By_N`: Sorts relative to the invariants of the chains in increasing order.
   - `By_Length`: Sorts by size of the chains in increasing order.
 
   Defaults to `By_N`.
+
 - `Nef_Check`: Determines wether to check for nef-ness of the canonical class <img src="https://render.githubusercontent.com/render/math?math=K_S">. Takes four possible options:
+
   - `Y`: Tests for nef-ness. It the test fails, discard the example.
   - `skip`: Same as `Y`.
   - `N`: Does not test for nef-ness.
   - `print`: Tests for nef-ness, but does not discard examples. Instead adds the result of this test to the summary file.
 
   Defaults to `Y`.
+
 - `Effective_Check`: Determines wether to check for <img src="https://render.githubusercontent.com/render/math?math=\mathbb Q">-effectiveness of the canonical class <img src="https://render.githubusercontent.com/render/math?math=K_S">. Takes the same options as `Nef_Check` that act analogously.
   Defaults to `Y`.
 - `Obstruction_Check`: Determines wether to check if the examples have no global obstruction for smoothing. Takes the same options as `Nef_Check` that act analogously.
@@ -184,20 +195,24 @@ Following is the full list of settings and their possible options:
       Search_For: 3 4
 
   Defaults to `1 2 3 4`
+
 - `K2`: Sets the self intersection of the canonical class in the original surface.
   Defaults to `0`.
 - `Keep_First`: Determines how to deal with multiple examples with the same invariants. Takes three options:
+
   - `local`: Within each sub-test, keep the first example with the given invariants.
-  Since configurations are usually very symmetric, one can expect a huge number of repetitions, since equivalent although different sub-configurations will give equivalent results.
+    Since configurations are usually very symmetric, one can expect a huge number of repetitions, since equivalent although different sub-configurations will give equivalent results.
   - `global`: Keep the first example with the given invariants along all tests.
   - `N`: Keep all examples. Not only multiple examples may appear thanks to symmetries of the configuration, but within the same sub-test it is possible to obtain the exact same example more than once, due to fundamental limitations of the program, so this is highly unrecommended.
 
   With `global`, when an example is obtained such that its invariants were already found, it gets immediately discarded. This means that if any check is set to `print` and the first example found did not pass the test, but the second example did, then only the less interesting example is included in the results. Thus an option other than `global` still has some merit.
 
   Defaults to `global`.
+
 - `Threads`: The amount of threads to spawn with multi thread support. Has a hard limit given by the macro `MAX_THREADS` in `config.hpp`, which is `4` unless modified.
   Defaults to `MAX_THREADS`.
 - `Sections_Input`: Determines the meaning of the parameter when adding curves. Takes two options:
+
   - `By_Self_Intersection`: The parameter for sections correspond to their self intersection in the original surface <img src="https://render.githubusercontent.com/render/math?math=Y">.
   - `By_Canonical_Intersection`: The parameter corresponds to the intersection of the section with the canonical class in the original surface <img src="https://render.githubusercontent.com/render/math?math=Y">.
 
@@ -206,15 +221,16 @@ Following is the full list of settings and their possible options:
 - `Use_Exactly`: Takes a non-negative number or `-1`. If `-1` is used, nothing happens. Otherwise, every sub-test must have this exact number of curves to be tested.
 
 Some debugging options are:
+
 - `SubTests`: Takes a range of positive integers, for example "`2 - 5`". It tests only in that range of sub-tests, which is useful for separating the load if there are too many sub-tests.
 
   Defaults to running the whole range.
+
 - `Export_Pretests`: This allows the program to also print a list of pre-tests that pass the <img src="https://render.githubusercontent.com/render/math?math=K^2"> and number of chains tests. The maximum amount of tests exported is given by the macro `MAX_PRETEST_EXPORTED`, which defaults to `10000`. Takes three possible options:
   - `Y`: Export pre-tests.
   - `N`: Do not export pre-tests.
   - `only`: Only export pre-tests, do not actually test them.
 - `Pretest_File`: Takes the name of the file where the pre-test information will be dumped.
-
 
 ## Adding and Modifying Curves
 
@@ -227,6 +243,7 @@ Each curve must be declared with a name, and each name must be unique.
 - `Fiber` block: Within a `Fiber` block, fibers are declared. Each fiber declaration consists of two lines. Empty lines or comments are ignored, but the two lines of a fiber declaration must be contiguous, that is, no empty lines or comments may appear in between.
 
   The first line consists of the fiber type followed by a possibly empty list of space-separated test options. Fiber types follow Kodaira's notation of normal crossing singular elliptic fibers, namely,
+
   - `I1` for a singular node of self intersection <img src="https://render.githubusercontent.com/render/math?math=0">. Note that this fiber is special in that the curve has a double point.
   - `In` for a cycle of <img src="https://render.githubusercontent.com/render/math?math=n"> curves, each with self intersection <img src="https://render.githubusercontent.com/render/math?math=-2">, for <img src="https://render.githubusercontent.com/render/math?math=n = 2,\ldots,18">.
   - `In*` for X-shaped trees of <img src="https://render.githubusercontent.com/render/math?math=n %2B 5"> curves, each with self intersection <img src="https://render.githubusercontent.com/render/math?math=-2">, for <img src="https://render.githubusercontent.com/render/math?math=n = 0,1,2,3,4">.
@@ -235,10 +252,12 @@ Each curve must be declared with a name, and each name must be unique.
   (Types `II`, `III` and `IV` may still be declared, but require special treatment discussed later)
 
   The next line contains a space-separated list of names, used to identify the curves in the fiber. For cyclical fibers of type `In`, they are given in order. For non cyclical fibers, the order is as follows:
-    - `In*`: The first <img src="https://render.githubusercontent.com/render/math?math=n%2B1"> curves correspond to the chain in the interior of the X-shape in order. The next two curves are the ones intersecting the first curve of the chain. The last two curves are the ones intersecting the last curve of the chain.
-    - `IV*`, `III*` and `II*`: The first curve is the one with order 3 at the middle. Then come the branches in order from smallest branch to largest branch. Within each branch, the curves are ordered starting from the one intersecting the order 3 curve in the middle.
+
+  - `In*`: The first <img src="https://render.githubusercontent.com/render/math?math=n%2B1"> curves correspond to the chain in the interior of the X-shape in order. The next two curves are the ones intersecting the first curve of the chain. The last two curves are the ones intersecting the last curve of the chain.
+  - `IV*`, `III*` and `II*`: The first curve is the one with order 3 at the middle. Then come the branches in order from smallest branch to largest branch. Within each branch, the curves are ordered starting from the one intersecting the order 3 curve in the middle.
 
   The options for the fiber in the first line are as follows:
+
   - `Fix` or `F`: Within the corresponding test, include every curve in every pre-test.
   - `Ign` or `I`: Within the corresponding test, ignore every curve in every pre-test.
   - `Try` or `T`: Within the corresponding test, try every possibility of including or ignoring each curve.
@@ -271,6 +290,7 @@ Each curve must be declared with a name, and each name must be unique.
 - `Sections(n)` block: Within a `Sections` block, (multi-)sections are declared. Each section declaration consists of two lines. Empty lines or comments are ignored, but the two lines of a section declaration must be contiguous, that is, no empty lines or comments may appear in between.
 
   The first line consists of the name of the new section followed by a possibly empty list of space-separated options, which can be:
+
   - `Fix` or `F`: to include the curve throughout the test.
   - `Ign` or `I`: to ignore the curve throughout the test.
   - `Try` or `T`: to test both possibilities.
@@ -288,6 +308,7 @@ Each curve must be declared with a name, and each name must be unique.
 - `Name` or `Merge` block: Within a `Name` block, named points are declared (and more generally, a merge operation is performed). The way in which points are named is by blowing up a point (usually an intersection) and naming the exceptional divisor instead. Each name declaration consists of two lines. Empty lines or comments are ignored, but the two lines of a name declaration must be contiguous, that is, no empty lines or comments may appear in between.
 
   The first line consists of the name of the new exceptional followed by a possibly empty list of space-separated options, which can be:
+
   - `Fix` or `F`: to include the curve throughout the test.
   - `Ign` or `I`: to ignore the curve throughout the test.
   - `Try` or `T`: to test both possibilities.
@@ -297,14 +318,16 @@ Each curve must be declared with a name, and each name must be unique.
   The second line contains a possibly empty list of space-separated names, all of which must correspond to curves already declared, be them part of fibers, sections or other exceptionals, all of which can be repeated. An exceptional cannot have double points, thus **it is illegal to include the exceptional itself in the list**. The curves in the list must intersect each other in a way made precise later.
 
   When the list has at most two curves (possibly both the same one), a normal blow up is done:
+
   - If the list is empty, the blowing up is done at a general point outside all other curves.
   - If the list contains only one curve, the blowup is done at a general point inside the curve, decreasing its self intersection by one.
   - If the list contains two different curves, these curves are expected to have been intersecting at least one point. The blowup then separates these curves at some intersection and decreases their self intersections.
   - If the list only contains a curve twice, the curve is expected to contain at least a double point (for example be a `I1`). The blowup is done at one such double point, solving the singularity and decreasing its self intersection accordingly.
 
-  This process is generalized to include more curves by means of a *merge* operation. Essentially declares that through a point there pass precisely the curves in the list with multiplicities given by the amount of times they appear in the list, where before the operation, those intersections were assumed to be in general position. This declaration makes it so that after blowing up the point and naming the exceptional, all curves in the list intersect the exceptional in general points instead of intersecting each other.
+  This process is generalized to include more curves by means of a _merge_ operation. Essentially declares that through a point there pass precisely the curves in the list with multiplicities given by the amount of times they appear in the list, where before the operation, those intersections were assumed to be in general position. This declaration makes it so that after blowing up the point and naming the exceptional, all curves in the list intersect the exceptional in general points instead of intersecting each other.
 
   This operation specializes a configuration that was in a more general position, and so we ask that the intersection between the total transforms of pairs of curves remain the same. Thus,
+
   - For every curve <img src="https://render.githubusercontent.com/render/math?math=C"> that appears <img src="https://render.githubusercontent.com/render/math?math=a"> times in the list, <img src="https://render.githubusercontent.com/render/math?math=C"> must have at least <img src="https://render.githubusercontent.com/render/math?math=\frac{a(a-1)}{2}"> double points, which will be solved after the operation. It will end up intersecting the exceptional <img src="https://render.githubusercontent.com/render/math?math=a"> times in general points.
   - For every curve <img src="https://render.githubusercontent.com/render/math?math=C"> that appears <img src="https://render.githubusercontent.com/render/math?math=a"> times in the list and every curve <img src="https://render.githubusercontent.com/render/math?math=D"> that appears <img src="https://render.githubusercontent.com/render/math?math=b"> times, they must intersect at least <img src="https://render.githubusercontent.com/render/math?math=a \cdot b"> times. After the operation, they will intersect each other <img src="https://render.githubusercontent.com/render/math?math=a \cdot b"> less times.
 
@@ -385,11 +408,13 @@ Each curve must be declared with a name, and each name must be unique.
       MakeFibers:
           I2 Try
               A B
+
   is effectively the same as
 
       Fibers:
           I2 Try
               A B
+
   The type of fiber, in this case `I2`, can be any non empty string, even types not supported by the program.
   The curves that appear in the declaration of the fiber can be any section or exceptional which was previously defined, except a curve that is already part of a fiber.
   `MakeFiber` does not modify the self intersection of the curves and neither the intersections between curves. It also does not check wether the the given intersections or self intersections are consistent with the type of fiber, thus making this operation quite flexible.
@@ -399,7 +424,6 @@ Each curve must be declared with a name, and each name must be unique.
 - `ForgetExceptionals` block: Within a `ForgetExceptional` block, curves previously defined in a `merge/name` block are stripped of their status as exceptional curves and become equivalent as other curves or sections. This means that they are not taken into account in the Nef and Obstruction check. They are not contracted if within a sub-test they are an isolated (-1)-curve.
 
   Each `ForgetExceptional` declaration consists of a single line. Each line consists of a list of space separated names, which correspond to exceptionals that are to be forgotten.
-
 
 **Testing cannot start if there are curves with double points. Every singularity must be solved.**
 
@@ -419,6 +443,7 @@ Due to some limitations of the program, this check may fail if the original conf
 # Obstruction check
 
 This checks if the global obstruction for smoothing the singularities in <img src="https://render.githubusercontent.com/render/math?math=S"> is zero. This checks for the following:
+
 - At most two complete fibers are included in the example.
 - after all blowups as declared by `Merge` operations, every curve that is not exceptional or fiber has self intersection at least <img src="https://render.githubusercontent.com/render/math?math=-1">.
 
