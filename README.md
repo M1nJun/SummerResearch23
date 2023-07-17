@@ -57,7 +57,7 @@ To test a configuration, a test file must be provided. For example, if the test 
 
 or if using Linux or OSX,
 
-    ./Search.exe test.txt
+    ./Search.exe Tests/test.txt
 
 If `test.txt` is a valid file, the testing will begin immediately. Afterwards, an example database file and a summary file will be created, depending on the settings provided in the test file.
 
