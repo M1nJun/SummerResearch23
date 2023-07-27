@@ -865,37 +865,6 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
        {{7}, -2}
        //There was a -1 curve here
        }},
-
-    // {"E2,I0*IIm", {
-    //     {}
-    // }},
-    // {"E2,I0*II*m", {
-    //     {}
-    // }},
-    // {"E2,I0*II*a", {
-    //     {}
-    // }},
-    // {"E2,I0*IVm", {
-    //     {}
-    // }},
-    // {"E2,I0*IV*m", {
-    //     {}
-    // }},
-    // {"E2,I0*IV*a", {
-    //     {1,2,3,4}, //G0,SI-3
-    //     {0,5,6}, //G0,SI-2
-    //     {0}, //G0,SI-2
-    //     {0}, //G0,SI-2
-    //     {0}, //G0,SI-2
-    //     {1,7}, //G0,SI-2
-    //     {1,8}, //G0,SI-2
-    //     {5}, //G0,SI-2
-    //     {6} //G0,SI-2
-    // }},
-    // {"E2,I0*IIIm", {
-    //     {}
-    // }},
-
 };
 
 //python-like split yay
