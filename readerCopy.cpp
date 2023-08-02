@@ -1071,7 +1071,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{}, }
     }},
 
-    /page 20
+    //page 20
     {"E2, III*m1", {//ther is a -1 curve in this case
         {{1}, -3},
         {{0,2}, -2},//M2
