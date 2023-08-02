@@ -822,6 +822,8 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
     // {"E2,I0IIm", {
     //     {}
     // }},
+
+    //page 18
     {"E2,I0II*m1", { 
         {{1}, -3},
         {{0,2}, -2},//M2
@@ -1068,6 +1070,31 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
     {"E2, I0IIIm", {
         {{}, }
     }},
+
+    /page 20
+    {"E2, III*m1", {//ther is a -1 curve in this case
+        {{1}, -3},
+        {{0,2}, -2},//M2
+        {{1,3}, -2},//M3
+        {{2,4,5}, -2},//M4
+        {{3,6}, -2},//M3
+        {{3}, -2},//M2
+        {{4,7}, -2},//
+        {{6}, -2}
+    }},
+
+    {"E2, III*m1", {//ther is a -1 curve in this case
+        {{1}, -3},
+        {{0,2}, -2},//M2
+        {{1,3}, -2},//M3
+        {{2,4,5}, -2},//M4
+        {{3,6}, -2},//M3
+        {{3}, -2},//M2
+        {{4,7}, -2},//
+        {{6}, -2}
+    }},
+
+
     //page 21
     {"E2, 2II*m1", {
         {{1,2,3}, -2}, //M12
