@@ -1,0 +1,23 @@
+
+Output: jsonl/3333
+Summary_Output: summary/3333
+Summary_Style: LaTeX_Table
+
+Single_Chain: Y
+Double_Chain: Y
+Keep_First: global
+Search_For: 5
+K2: 4
+
+Nef_Check: print
+Effective_Check: print
+Obstruction_Check: print
+
+Summary_Include_GCD: Y
+LaTeX_Include_Subsection: Y
+
+Tests: 1
+
+Fibers:
+    I1 Fix
+        L_A L_B L_C
