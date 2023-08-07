@@ -973,10 +973,10 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{7,10}, -2}, //M4
         {{9}, -2} //M2
     }},
-    {"E2, I0*IVm", {
+    {"E2,I0*IVm", {
         {}
     }},
-    {"E2, I0*IV*m1", {
+    {"E2,I0*IV*m1", {
         {{1,2,3,4}, -2}, //M2
         {{0}, -2},
         {{0}, -2},
@@ -990,7 +990,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{8}, -2},
         {{9}, -2}
     }},
-    {"E2, I0*IV*m2", {
+    {"E2,I0*IV*m2", {
         {{1,2,3,4}, -2}, //M2
         {{0}, -2},
         {{0}, -2},
@@ -1005,7 +1005,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{9}, -2},
         {{10}, -2}
     }},
-    {"E2, I0*IV*m3", {
+    {"E2,I0*IV*m3", {
         {{1,2,3,4}, -2}, //M2
         {{0}, -2},
         {{0}, -2},
@@ -1021,7 +1021,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{10}, -2},
         {{11}, -2}
     }},
-    {"E2, I0*IV*m4", {
+    {"E2,I0*IV*m4", {
         {{1,2,3,4}, -2}, //M2
         {{0}, -2},
         {{0}, -2},
@@ -1038,7 +1038,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{11}, -2},
         {{12}, -2}
     }},
-    {"E2, I0*IV*m5", {
+    {"E2,I0*IV*m5", {
         {{1,2,3,4}, -2}, //M2
         {{0}, -2},
         {{0}, -2},
@@ -1056,7 +1056,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{12}, -2},
         {{13}, -2}
     }},
-    {"E2, I0*IV*a", {
+    {"E2,I0*IV*a", {
         {{1,2,3,4}, -3}, //M2
         {{0,5,6}, -2}, //M3
         {{0}, -2},
@@ -1067,12 +1067,12 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{5}, -2},
         {{6}, -2}
     }},
-    {"E2, I0IIIm", {
+    {"E2,I0IIIm", {
         {{}, }
     }},
 
     //page 20
-    {"E2, III*m1", {//ther is a -1 curve in this case
+    {"E2,III*m1", {//ther is a -1 curve in this case
         {{1}, -3},
         {{0,2}, -2},//M2
         {{1,3}, -2},//M3
@@ -1083,7 +1083,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{6}, -2}
     }},
 
-    {"E2, III*m1", {//ther is a -1 curve in this case
+    {"E2,III*m1", {//ther is a -1 curve in this case
         {{1}, -3},
         {{0,2}, -2},//M2
         {{1,3}, -2},//M3
@@ -1096,7 +1096,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
 
 
     //page 21
-    {"E2, 2II*m1", {
+    {"E2,2II*m1", {
         {{1,2,3}, -2}, //M12
         {{0}, -2}, //M6
         {{0,4}, -2}, //M8
@@ -1110,7 +1110,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{9}, -2},
         {{9}, -2}
     }},
-    {"E2, 2II*m2", {
+    {"E2,2II*m2", {
         {{1,2,3}, -2}, //M12
         {{0}, -2}, //M6
         {{0,4}, -2}, //M8
@@ -1125,7 +1125,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{10}, -2},
         {{10}, -2}
     }},
-    {"E2, 2II*m3", {
+    {"E2,2II*m3", {
         {{1,2,3}, -2}, //M12
         {{0}, -2}, //M6
         {{0,4}, -2}, //M8
@@ -1141,7 +1141,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{11}, -2},
         {{11}, -2}
     }},
-    {"E2, 2II*m4", {
+    {"E2,2II*m4", {
         {{1,2,3}, -2}, //M12
         {{0}, -2}, //M6
         {{0,4}, -2}, //M8
@@ -1158,7 +1158,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{12}, -2},
         {{12}, -2}
     }},
-    {"E2, 2II*m5", {
+    {"E2,2II*m5", {
         {{1,2,3}, -2}, //M12
         {{0}, -2}, //M6
         {{0,4}, -2}, //M8
@@ -1176,13 +1176,13 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{13}, -2},
         {{13}, -2}
     }},
-    {"E2, IIIIm", {
+    {"E2,IIIIm", {
         {{}, }
     }},
-    {"E2, IIII*m", {
+    {"E2,IIII*m", {
         {{}, }
     }},
-    {"E2, II*II*m1", {
+    {"E2,II*II*m1", {
         {{1,2,3}, -2}, //M6
         {{0,5}, -2}, //M5
         {{0}, -2}, //M3
@@ -1202,7 +1202,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{14,17}, -2}, //M4
         {{16}, -2} //M2
     }},
-    {"E2, II*II*m2", {
+    {"E2,II*II*m2", {
         {{1,2,3}, -2}, //M6
         {{0,5}, -2}, //M5
         {{0}, -2}, //M3
@@ -1223,7 +1223,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{15,18}, -2}, //M4
         {{17}, -2} //M2
     }},
-    {"E2, II*II*m3", {
+    {"E2,II*II*m3", {
         {{1,2,3}, -2}, //M6
         {{0,5}, -2}, //M5
         {{0}, -2}, //M3
@@ -1245,7 +1245,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{16,19}, -2}, //M4
         {{18}, -2} //M2
     }},
-    {"E2, II*II*m4", {
+    {"E2,II*II*m4", {
         {{1,2,3}, -2}, //M6
         {{0,5}, -2}, //M5
         {{0}, -2}, //M3
@@ -1268,7 +1268,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{17,20}, -2}, //M4
         {{19}, -2} //M2
     }},
-    {"E2, II*II*m5", {
+    {"E2,II*II*m5", {
         {{1,2,3}, -2}, //M6
         {{0,5}, -2}, //M5
         {{0}, -2}, //M3
@@ -1292,7 +1292,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{18,21}, -2}, //M4
         {{20}, -2} //M2
     }},
-    {"E2, II*II*a", {
+    {"E2,II*II*a", {
         {{1,2,3}, -2}, //M6
         {{0,5}, -2}, //M5
         {{0}, -2}, //M3
@@ -1310,7 +1310,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{13}, -2}, //M2
     }},
     //page23
-    {"E2, II*IV*a", {
+    {"E2,II*IV*a", {
         {{1,2}, -3}, //M2
         {{0,3}, -2}, //M3
         {{0,9,10}, -2}, //M3
@@ -1325,10 +1325,10 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{9}, -2},
         {{10}, -2}
     }},
-    {"E2, 2IVm", {
+    {"E2,2IVm", {
         {{}}
     }},
-    {"E2, 2IV*m1", {
+    {"E2,2IV*m1", {
         {{1,2,3}, -2}, //M2
         {{0,4}, -3}, //M2
         {{0}, -2},
@@ -1340,14 +1340,14 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{6}, -2}, //M2
         {{7}, -2} //M2
     }},
-    {"E2, IVIVm", {
+    {"E2,IVIVm", {
         {{}}
     }},
-    {"E2, IVIV*m", {
+    {"E2,IVIV*m", {
         {{}}
     }},
     //page 25
-    {"E2, II*IIIa", {
+    {"E2,II*IIIa", {
         {{1,2,3}, -2}, //M4
         {{0}, -4},
         {{0}, -2}, //M2
@@ -1357,7 +1357,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{4,7}, -2}, //M4
         {{6}, -2} //M2
     }},
-    {"E2, II*III*m2", {
+    {"E2,II*III*m2", {
         {{1,2,3}, -2}, //M6
         {{0,5}, -2}, //M5
         {{0}, -2}, //M3
@@ -1377,7 +1377,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{15,17}, -2}, //M2
         {{16}, -2}
     }},
-    {"II*III*a", {
+    {"E2,II*III*a", {
         {{1,2,3}, -2}, //M6
         {{0,5}, -2}, //M5
         {{0}, -2}, //M3
@@ -1393,13 +1393,13 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{11,13}, -2}, //M2
         {{12}, -2}
     }},
-    {"E2, IVIIIm", {
+    {"E2,IVIIIm", {
         {{}}
     }},
-    {"E2, IVIII*m", {
+    {"E2,IVIII*m", {
         {{}}
     }},
-    {"E2, IVIII*a", {
+    {"E2,IVIII*a", {
         {{1,2,3}, -2},
         {{0}, -3},
         {{0}, -3},
@@ -1410,8 +1410,47 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{6}, -2}
     }},
     //page 27
-
-
+    {"E2,IIIIIIm", {
+        {{}}
+    }},
+    {"E2,IIIIII*m", {
+        {{}}
+    }},
+    {"E2,III*III*m2", {
+        {{1,2,3}, -2}, //M4
+        {{0,6}, -2}, //M3
+        {{0}, -2}, //M2
+        {{0,4}, -2}, //M3
+        {{3,5}, -2}, //M2
+        {{4}, -2},
+        {{1,7}, -2}, //M2
+        {{6,8}, -3},
+        {{7,9}, -2},
+        {{8,10}, -3},
+        {{9,11}, -2}, //M2
+        {{10,12}, -2}, //M3
+        {{11,13,14}, -2}, //M4
+        {{12}, -2}, //M2
+        {{12,15}, -2}, //M3
+        {{14,16}, -2}, //M2
+        {{15}, -2}
+    }},
+    {"E2,III*III*a", {
+        {{1,2,3}, -2}, //M4
+        {{0,6}, -2}, //M3
+        {{0}, -2}, //M2
+        {{0,4}, -2}, //M3
+        {{3,5}, -2}, //M2
+        {{4}, -2},
+        {{1,7}, -3}, //M2
+        {{6,8}, -2}, //M3
+        {{7,9,10}, -2}, //M4
+        {{8}, -2}, //M2
+        {{8,11}, -2}, //M3
+        {{10,12}, -2}, //M2
+        {{11}, -2}
+    }},
+    //PARABOLIC TYPE [3]
 };
 
 //python-like split yay
