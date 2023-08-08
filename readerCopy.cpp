@@ -487,14 +487,14 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{5,8}, -2}, //M4
         {{7}, -2} //M2
     }},
-    // {"E1,VIII3", {
-    //     {1,2},
-    //     {0,3},
-    //     {0,4},
-    //     {1},
-    //     {2,5},
-    //     {4}
-    // }},
+    {"E1,VIII3", {
+        //call P3,IV*IIn0
+        //merge:
+        //      E
+        //         A B
+        //      F
+        //         A B E
+    }},
     {"E1,VIII4", {
         {{1,2,3}, -2}, //M10
         {{0,4}, -2}, //M6
@@ -1451,6 +1451,13 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{11}, -2}
     }},
     //PARABOLIC TYPE [3]
+    //page 33
+    {"P3,IV*IIn0", {
+        {{1,1,2}, -2}, //M3
+        {{0,0}, -3}, //M2
+        {{0,3}, -2}, //M2
+        {{2}, -2}
+    }}
 };
 
 //python-like split yay
