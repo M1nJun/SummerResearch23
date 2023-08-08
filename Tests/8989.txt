@@ -1,6 +1,6 @@
 
-Output: jsonl/3333
-Summary_Output: summary/3333
+Output: jsonl/8989
+Summary_Output: summary/8989
 Summary_Style: LaTeX_Table
 
 Single_Chain: Y
@@ -19,5 +19,25 @@ LaTeX_Include_Subsection: Y
 Tests: 1
 
 Fibers:
-    I1 Fix
-        L_A L_B L_C
+    P3,IV*IIn0
+        A B C D
+    P3,IV*IIn0
+        E F G H
+    P3,IV*IIn0
+        I J K L
+Sections(-2):
+    S
+        A E I
+Merge:
+    X
+        A B
+    Y
+	A B X
+    M
+	E F
+    N
+	E F M
+    P
+	I J
+    Q
+	I J P
