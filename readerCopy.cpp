@@ -453,12 +453,19 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{4,6}, -2},//G0,M2
         {{5}, -2} //G0,M1
     }},
-    // {"E1,VII", {
-    //     {1,2,3},
-    //     {0},
-    //     {0,4},
-    //     {0}
-    // }},
+    {"E1,VII", {
+        //would have had to call P3,IVIIn0 and performed
+        //merge:
+        //      E
+        //        A B
+        //      F
+        //        A E
+        //      G
+        //        A E F
+        //BUT! because we are ignoring genus 1 curves, and the cusp is a genus 1, we end up with:
+        {{}, -2}
+        //If you ever want to include genus 1 curves you would have to add a curve both on "E1,VII" and "P3,IVIIn0"
+    }},
     {"E1,VII*", {
         {{1,2,3}, -2}, //G0,M8
         {{0,5}, -2}, //G0,M5                                                                                    
@@ -473,9 +480,17 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{9,11}, -2}, //G0,M2
         {{10}, -2}//G0,M1
     }},
-    // {"E1,VIII1", {
-    //     {}
-    // }},
+    {"E1,VIII1", {
+        //says elliptic what should we do?
+        //call P3,In100 mind the notation n1 means n=1
+        //merge:
+        //      E
+        //        A
+        //      F
+        //        A E
+        //      G
+        //        A E F
+    }},
     {"E1,VIII2", {
         {{1,2,3}, -2}, //M10
         {{0,4}, -2}, //M7
@@ -1607,12 +1622,20 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{11}, -2}
     }},
     //PARABOLIC TYPE [3]
+    //page 28
+    {"P3,In100", {
+        {{0}, -2} //Elliptic
+    }},
     //page 33
     {"P3,IV*IIn0", {
         {{1,1,2}, -2}, //M3
         {{0,0}, -3}, //M2
         {{0,3}, -2}, //M2
         {{2}, -2}
+    }},
+    {"P3,IVIIn0", {
+        {{}, -2}
+        //there was genus1 curve
     }}
 };
 
