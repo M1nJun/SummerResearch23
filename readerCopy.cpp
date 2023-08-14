@@ -482,7 +482,7 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
     }},
     {"E1,VIII1", {
         //says elliptic what should we do?
-        //call P3,In100 mind the notation n1 means n=1
+        //call P3,In100, mind the notation n1 means n=1
         //merge:
         //      E
         //        A
@@ -556,44 +556,44 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{7}, -2} //
     }},
 
-    // //Elliptic Type [2]
+    //Elliptic Type [2]
     
-    // //E2,I0I0m THIS ONE HAS A IN IT 
-    // {"E2,I0I0m1", {
-    //     {1,2}, //G0,SI-2
-    //     {0}, //G1,SI-1
-    //     {0} //G1,SI-1
-    // }},
-    // {"E2,I0I0m2", {
-    //     {1,2}, //G0,SI-2
-    //     {0}, //G1,SI-1
-    //     {0,3}, //G0,SI-2
-    //     {2} //G1,SI-1
-    // }},
-    // {"E2,I0I0m3", {
-    //     {1,2}, //G0,SI-2
-    //     {0}, //G1,SI-1
-    //     {0,3}, //G0,SI-2
-    //     {2,4}, //G0,SI-2
-    //     {3} //G1,SI-1
-    // }},
-    // {"E2,I0I0m4", {
-    //     {1,2}, //G0,SI-2
-    //     {0}, //G1,SI-1
-    //     {0,3}, //G0,SI-2
-    //     {2,4}, //G0,SI-2
-    //     {3,5}, //G0,SI-2
-    //     {4} //G1,SI-1
-    // }},
-    // {"E2,I0I0m5", {
-    //     {1,2}, //G0,SI-2
-    //     {0}, //G1,SI-1
-    //     {0,3}, //G0,SI-2
-    //     {2,4}, //G0,SI-2
-    //     {3,5}, //G0,SI-2
-    //     {4,6}, //G0,SI-2
-    //     {5} //G1,SI-1
-    // }},
+    //E2,I0I0m, there was a genus 1 curve here
+    {"E2,I0I0m1", {
+        {1,2}, //G0,SI-2
+        {0}, //G1,SI-1
+        {0} //G1,SI-1
+    }},
+    {"E2,I0I0m2", {
+        {1,2}, //G0,SI-2
+        {0}, //G1,SI-1
+        {0,3}, //G0,SI-2
+        {2} //G1,SI-1
+    }},
+    {"E2,I0I0m3", {
+        {1,2}, //G0,SI-2
+        {0}, //G1,SI-1
+        {0,3}, //G0,SI-2
+        {2,4}, //G0,SI-2
+        {3} //G1,SI-1
+    }},
+    {"E2,I0I0m4", {
+        {1,2}, //G0,SI-2
+        {0}, //G1,SI-1
+        {0,3}, //G0,SI-2
+        {2,4}, //G0,SI-2
+        {3,5}, //G0,SI-2
+        {4} //G1,SI-1
+    }},
+    {"E2,I0I0m5", {
+        {1,2}, //G0,SI-2
+        {0}, //G1,SI-1
+        {0,3}, //G0,SI-2
+        {2,4}, //G0,SI-2
+        {3,5}, //G0,SI-2
+        {4,6}, //G0,SI-2
+        {5} //G1,SI-1
+    }},
     // //E2,I0*I0*m
     {"E2,I0*I0*m0", {
         {{1,2}, -4}, 
@@ -668,7 +668,8 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{8}, -2}, //
         {{8}, -2} //
     }},
-     //E2,I0I0*m 
+    //page 17
+    //E2,I0I0*m 
     {"E2,I0I0*m0", {
         {{1,2,3}, -2}, //M2
         {{0}, -2},
@@ -834,10 +835,17 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{9}, -2},
         {{9}, -2}
     }},
-    // {"E2,I0IIm", {
-    //     {}
-    // }},
-
+    {"E2,I0IIm0", {
+        //call P3,In100
+        //merge:
+        //      E
+        //        A
+        //      F
+        //        A E
+        //      G
+        //        A E F
+    }},
+    //I think m>0 for E2,I0IIm is insignificant because the genus 1 curves has to disappear.
     //page 18
     {"E2,I0II*m1", { 
         {{1}, -3},
@@ -850,9 +858,8 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{5,8}, -2},//M4
         {{7}, -2}//M2
         //There was a -1 curve here
-     }}, 
-     
-     {"E2,I0II*m2", {
+    }}, 
+    {"E2,I0II*m2", {
         {{1}, -2},
         {{0,2}, -3},
         {{1,3}, -2},//M2
@@ -864,9 +871,8 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{6,9}, -2},//M4
         {{8}, -2}//M2
         //There was a -1 curve here
-     }},
- 
-     {"E2,I0II*m3", {
+    }},
+    {"E2,I0II*m3", {
         {{1}, -2},
         {{0,2}, -2},
         {{1,3}, -3},
@@ -879,9 +885,8 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{7,10}, -2},//M4
         {{9}, -2}//M2
         //There was a -1 curve here
-     }},
-
-     {"E2,I0II*m4", {
+    }},
+    {"E2,I0II*m4", {
         {{1}, -2},
         {{0,2}, -2},
         {{1,3}, -2},
@@ -895,8 +900,8 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{8,11}, -2},//M4
         {{10}, -2}//M2
         //There was a -1 curve here
-     }},
-     {"E2,I0II*m5", {
+    }},
+    {"E2,I0II*m5", {
         {{1}, -2},
         {{0,2}, -2},
         {{1,3}, -2},
@@ -911,8 +916,13 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{9,12}, -2},//M4
         {{11}, -2}//M2
         //There was a -1 curve here
-     }},
-
+    }},
+    {"E2, I0IVm2", {
+        //call P3, I3I0m2
+        //merge:
+        //      Z
+        //          A B C
+    }},
     {"E2,I0IV*m1", { 
        {{1}, -3},
        {{0,2}, -2},//M2
@@ -988,8 +998,11 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
         {{7,10}, -2}, //M4
         {{9}, -2} //M2
     }},
-    {"E2,I0*IVm", {
-        {}
+    {"E2,I0*IVm2", {
+        //call "P3,In3I0*m2"
+        //merge:
+        //      E
+        //          A B C
     }},
     {"E2,I0*IV*m1", {
         {{1,2,3,4}, -2}, //M2
@@ -1626,6 +1639,24 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
     {"P3,In100", {
         {{0}, -2} //Elliptic
     }},
+    {"P3, In3I0m2", {
+        {{1,2,3}, -3}, //A 
+        {{0,2}, -2}, //B
+        {{0,1}, -2}, //C
+        {{0}, -2}
+    }},
+    //page 29
+    {"P3,In3I0*m2", {
+        {{1,2,3}, -3},
+        {{0,2}, -2},
+        {{0,1}, -2},
+        {{0,4}, -2},
+        {{3,5}, -3},
+        {{4,6,7,8}, -2}, //M2
+        {{5}, -2},
+        {{5}, -2},
+        {{5}, -2}
+    }},
     //page 33
     {"P3,IV*IIn0", {
         {{1,1,2}, -2}, //M3
@@ -1636,7 +1667,8 @@ const map<string,vector<std::pair<vector<int>, int>>> singular_fibers {
     {"P3,IVIIn0", {
         {{}, -2}
         //there was genus1 curve
-    }}
+    }},
+
 };
 
 //python-like split yay
