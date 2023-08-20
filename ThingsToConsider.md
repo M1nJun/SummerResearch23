@@ -1,6 +1,11 @@
 Everything that you need to know is already in the README.md. The purpose of this is to make your life easy and not having to skim through the whole README to know what to do.
 
-I'll assume that you have a Python3 installed OSX.
+I'll assume that you have a Python installed OSX.
+To check your python version, run this command on your terminal.
+```
+python --version
+```
+
 You need to create a Search.exe to run the program.
 Run this command on your terminal.
 
@@ -21,17 +26,20 @@ Run this command on your terminal.
 You can see the progress on the console. After the program finishes computing, it automatically creates a jsonl file(in the jsonl directory) after the test file you used.(Ex: 1111.txt -> 1111.jsonl)
 
 That jsonl file is not meant to be human readable. There is a Display program. To use this program you need to install Tkinter(A Graphic User Interface for Python)
-Run this command on your terminal.
+If you have python2, run this command on your terminal.
 ```
 pip install tk
 ```
-If this doesn't work, try this command instead.
+If this doesn't work, you probably have python 3, try this command instead.
 ```
 pip3 install tk
 ```
 
-After you've installed Tkinter,
-Run this command on your terminal.
+After you've installed Tkinter, run this command on your terminal.
+```
+./Display.py
+```
+If you have python3, run this command instead.
 ```
 python3 Display.py
 ```
@@ -48,7 +56,6 @@ It should say on the display that the file was loaded.
 When you compiled the test file using the Search.exe, you should have received an "n" number of examples did the program found.
 (From my example with the 8989.txt file, recall that it "found 2 examples.")
 That "n" is the number of IDs with the range of 1 ~ n you can use on the display.
-Enter the ID to see the examples that were found.
+Enter the ID number on the blank text field to see the examples that were found.
 ![Screenshot 2023-08-19 at 8 14 27 PM](https://github.com/M1nJun/SummerResearch23/assets/125623542/dfee853b-6893-4098-8226-251482ef2b8d)
-
-
+You can use the left and right arrow key on your keyboard to go back and forth between your examples. Keep in mind, when you go out of bounds, it will throw you an error.
