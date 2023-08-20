@@ -22,6 +22,7 @@ Run this command on your terminal.
 ./Search.exe Tests/<test>.txt
 ```
 ![Screenshot 2023-08-19 at 8 16 17 PM](https://github.com/M1nJun/SummerResearch23/assets/125623542/8f39a504-41c7-4d66-b404-8d3d2293a1c3)
+
 (8989.txt is a very light test file. Sometimes when you run a test file that runs very quick, you might not see the progress display(percentage) fully updated even though it says its "Done!". This was in fact successfully compiled. This is just because the the program finished compiling faster than the progress update.)
 You can see the progress on the console. After the program finishes computing, it automatically creates a jsonl file(in the jsonl directory) after the test file you used.(Ex: 1111.txt -> 1111.jsonl)
 
