@@ -1,3 +1,5 @@
+Everything that you need to know is already in the README.md. The purpose of this is to make your life easy and not having to skim through the whole README to know what to do.
+
 I'll assume that you have a Python3 installed OSX.
 You need to create a Search.exe to run the program.
 Run this command on your terminal.
@@ -24,4 +26,4 @@ Run this command on your terminal.
 python3 Display.py
 ```
 
-Open the corresponding <mark>.jsonl</mark> file with the open file button
+Open the corresponding .jsonl file with the open file button.
