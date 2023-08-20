@@ -45,7 +45,7 @@ If you have python3, run this command instead.
 ```
 python3 Display.py
 ```
-A window should appear.
+A window should appear. The display window is currently empty because you haven't loaded any file.
 ![Screenshot 2023-08-19 at 8 13 27 PM](https://github.com/M1nJun/SummerResearch23/assets/125623542/e2376f5b-3c09-43d3-a688-f996271b6654)
 
 Open the corresponding .jsonl file with the open file button.
